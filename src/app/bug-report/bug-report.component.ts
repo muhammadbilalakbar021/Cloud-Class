@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../service/http.service';
+import SnackBar from '../utils/snakbar';
 
 @Component({
   selector: 'app-bug-report',
@@ -8,7 +9,7 @@ import { HttpService } from '../service/http.service';
 })
 export class BugReportComponent implements OnInit {
   selectedValue: string = '';
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService, private _snackBar: SnackBar) {}
 
   ngOnInit(): void {}
 
@@ -17,18 +18,31 @@ export class BugReportComponent implements OnInit {
   }
 
   sendBugData(username: any, details: any) {
-    let obj = {
-      usertype: parseInt(this.selectedValue),
-      message: details,
-      name: 'John',
-      surname: 'Doe',
-      username: username,
-      password: 'xyzXYZ123321',
-      tstamp: '2021-12-31T10:11:12.313Z',
-      actiontaken: 'did something',
-      status: '0',
-    };
-    console.log('obj is', obj);
-    this.http.addReview(obj, 'bugreport');
+    if (!username) {
+      this._snackBar.showSnackBar('Please enter your username', '');
+    } else if (!details) {
+      this._snackBar.showSnackBar('Please enter your details', '');
+    } else {
+      let obj = {
+        usertype: parseInt(this.selectedValue),
+        message: details,
+        name: 'John',
+        surname: 'Doe',
+        username: username,
+        password: 'xyzXYZ123321',
+        tstamp: '2021-12-31T10:11:12.313Z',
+        actiontaken: 'did something',
+        status: '0',
+      };
+      console.log('obj is', obj);
+      this.http
+        .addReview(obj, 'bugreport')
+        .then((data) => {
+          this._snackBar.showSnackBar('Data Submitted Successfully', '');
+        })
+        .catch((err) => {
+          this._snackBar.showSnackBar('Error in Request', '');
+        });
+    }
   }
 }
