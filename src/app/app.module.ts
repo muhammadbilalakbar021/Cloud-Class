@@ -13,6 +13,8 @@ import { CloudClassComponent } from './cloud-class/cloud-class.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ContPopupComponent } from './modals/cont-popup/cont-popup.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +25,16 @@ import { HttpClientModule } from '@angular/common/http';
     BugReportComponent,
     ContactUsComponent,
     DownloadsComponent,
-    CloudClassComponent
+    CloudClassComponent,
+    ContPopupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

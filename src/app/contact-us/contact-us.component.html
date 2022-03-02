@@ -29,14 +29,14 @@
                   <div class="col-md-12 form-group">
                       <label for="exampleInputEmail1" class="bold">Name</label>
                       <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                          placeholder="John">
+                          placeholder="John" #name>
                   </div>
               </div>
               <div class="col-md-5 offset-md-1">
                   <div class="col-md-12 form-group">
                       <label for="exampleInputEmail1" class="bold">Username</label>
                       <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                          placeholder="Ak School">
+                          placeholder="Ak School" #username>
                   </div>
               </div>
           </div>
@@ -45,18 +45,18 @@
                   <div class="col-md-12 form-group">
                       <label for="exampleInputEmail1" class="bold">Surname</label>
                       <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                          placeholder="Doe">
+                          placeholder="Doe" #surname>
                   </div>
               </div>
               <div class="col-md-5 offset-md-1">
                   <div class="col-md-12 form-group">
                       <label for="exampleFormControlSelect1" class="bold">User Type</label>
-                      <select class="form-control" id="exampleFormControlSelect1">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
+                      <select class="form-control" id="exampleFormControlSelect1" (change)="selectChangeHandler($event)">
+                        <option value=0>School</option>
+                        <option value=1>Teacher</option>
+                        <option value=2>Student</option>
+                        <option value=3>Parent</option>
+                        <option value=4>Other</option>
                       </select>
                   </div>
               </div>
@@ -66,13 +66,13 @@
                   <div class="col-md-12 form-group">
                       <label for="exampleInputEmail1" class="bold">Email address</label>
                       <input type="email" class="form-control" id="exampleInputEmail1"
-                          aria-describedby="emailHelp" placeholder="Doe@gmail.com">
+                          aria-describedby="emailHelp" placeholder="Doe@gmail.com" #email>
                   </div>
               </div>
               <div class="col-md-5 offset-md-1">
                   <div class="col-md-12 form-group">
                       <label for="exampleFormControlSelect1" class="bold">Request Type</label>
-                      <select class="form-control" id="exampleFormControlSelect1">
+                      <select class="form-control" id="exampleFormControlSelect1" (change)="selectEventHandler($event)">
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>
@@ -88,8 +88,8 @@
                   <div class="col-md-12 form-group">
                       <label for="exampleFormControlTextarea1" class="bold">Details</label>
                       <textarea style="height:179px !important;" class="form-control"
-                          id="exampleFormControlTextarea1"></textarea>
-                      <a class="btn btn-primary btn-large mt-3" href="#" style="float:right;">Submit</a>
+                          id="exampleFormControlTextarea1" #details></textarea>
+                      <a class="btn btn-primary btn-large mt-3"  style="float:right;" (click)="sendContactData(username.value,name.value,details.value,surname.value)">Submit</a>
                   </div>
               </div>
           </div>
