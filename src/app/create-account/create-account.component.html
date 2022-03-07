@@ -1,35 +1,37 @@
 <div class="container-fluid p-5">
   <div class="row">
-      <div class="col-md-5 offset-md-1" >
-        <form >
-            <div class="col-md-5 form-group">
-              <label for="validationCustom01" class="bold form-label">Name</label>
-              <input type="text" class="form-control" id="validationCustom01" required placeholder="Name" #name>
-            </div>
-            <div class="col-md-5 form-group">
-              <label for="validationCustom02" class="bold form-label">Surname</label>
-              <input type="text" class="form-control" id="validationCustom02" required placeholder="Doe" #surname>
-            </div>
-            <div class="col-md-5 form-group">
-              <label for="validationCustom03"  class="bold form-label">Email address</label>
-              <input type="email" class="form-control" id="validationCustom03" required  placeholder="Doe@gmail.com" #email>
-            </div>
-            <div class="col-md-5 form-group" >
-                <label for="validationCustom04" class="bold form-label">School</label>
-                <input type="name" class="form-control" id="validationCustom04" required placeholder="Ak School" #school>
-              </div>
+    <div class="col-md-5 offset-md-1">
+      <form>
+        <div class="col-md-5 form-group">
+          <label for="validationCustom01" class="bold form-label">Name</label>
+          <input type="text" class="form-control" id="validationCustom01" required #name>
+        </div>
+        <div class="col-md-5 form-group">
+          <label for="validationCustom02" class="bold form-label">Surname</label>
+          <input type="text" class="form-control" id="validationCustom02" required #surname>
+        </div>
+        <div class="col-md-5 form-group">
+          <label for="validationCustom03" class="bold form-label">Email address</label>
+          <input type="email" class="form-control" id="validationCustom03" required #email>
+        </div>
+        <div class="col-md-5 form-group">
+          <label for="validationCustom04" class="bold form-label">School</label>
+          <input type="name" class="form-control" id="validationCustom04" required #school>
+        </div>
 
-            <div class="col-md-10 form-group" >
-                <label for="validationCustom05" class="bold form-label">Application</label>
-                <textarea style="height:179px !important;" class="form-control" id="validationCustom05" #textArea required></textarea>
-                <a type="button" href="assets\consent.docx">Download Consent Form</a>
-                <a class="btn btn-primary btn-large mt-3"  type="button" style="float:right;" (click)="sendData(name.value,surname.value,email.value,school.value,textArea.value)">Submit</a>
-              </div>
+        <div class="col-md-10 form-group">
+          <label for="validationCustom05" class="bold form-label">Application</label>
+          <textarea style="height:179px !important;" class="form-control" id="validationCustom05" #textArea
+            required></textarea>
+          <a type="button" href="assets\consent.docx">Download Consent Form</a>
+          <a class="btn btn-primary btn-large mt-3" type="button" style="float:right;"
+            (click)="sendData(name.value,surname.value,email.value,school.value,textArea.value)">Submit</a>
+        </div>
 
-            </form>
-      </div>
-      <div class="col-md-5 offset-md-1">
-        <img class="img-responsives" src="../../assets/Group 20.jpg" alt="">
-      </div>
+      </form>
+    </div>
+    <div class="col-md-5 offset-md-1">
+      <img class="img-responsives" src="../../assets/Group 20.jpg" alt="">
+    </div>
   </div>
 </div>

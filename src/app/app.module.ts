@@ -13,8 +13,9 @@ import { CloudClassComponent } from './cloud-class/cloud-class.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ContPopupComponent } from './modals/cont-popup/cont-popup.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { ContPopupComponent } from './modals/cont-popup/cont-popup.component';
     ContactUsComponent,
     DownloadsComponent,
     CloudClassComponent,
-    ContPopupComponent
+    ContPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,9 +35,10 @@ import { ContPopupComponent } from './modals/cont-popup/cont-popup.component';
     NoopAnimationsModule,
     MatSnackBarModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
