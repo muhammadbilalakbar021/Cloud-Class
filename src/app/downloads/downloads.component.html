@@ -19,14 +19,14 @@
                 <td>ErnestoV</td>
                 <td>Java</td>
                 <td>.....................</td>
-                <td><a class="underline" (click)="changeState()">Download</a></td>
+                <td><a class="underline" (click)="changeState('ErnestoV')">Download</a></td>
               </tr>
 
               <tr>
-                <td>Perdo</td>
+                <td>Perdo2</td>
                 <td>Python</td>
                 <td>......................</td>
-                <td><a class="underline" (click)="changeState()">Download</a></td>
+                <td><a class="underline" (click)="changeState('Perdo2')">Download</a></td>
               </tr>
 
             </tbody>
@@ -55,7 +55,7 @@
 
             <div class="col-md-6">
               <button class="btn btn-primary"
-                (click)="sendDownloadData(name.value,email.value,surname.value)">Download</button>
+                (click)="sendDownloadData(name.value,email.value,surname.value)">Download {{this.selected}}</button>
             </div>
           </div>
         </div>

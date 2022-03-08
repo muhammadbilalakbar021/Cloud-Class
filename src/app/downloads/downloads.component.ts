@@ -9,6 +9,7 @@ import SnackBar from '../utils/snakbar';
 })
 export class DownloadsComponent implements OnInit {
   isHided: boolean = true;
+  selected: any = "";
   ip: any;
   constructor(private http: HttpService, private _snackBar: SnackBar) {}
 
@@ -17,9 +18,15 @@ export class DownloadsComponent implements OnInit {
       this.ip = ip;
     });
   }
-  changeState() {
-    return (this.isHided = !this.isHided);
+  changeState(s: string) {
+    if (this.selected == s) {
+      this.isHided = !this.isHided;
+    } else {
+      this.selected = s;
+      this.isHided = false;
+    }
   }
+  
   sendDownloadData(name: any, email: any, surname: any) {
     if (!name) {
       this._snackBar.showSnackBar('Please enter your name', '');
@@ -33,10 +40,16 @@ export class DownloadsComponent implements OnInit {
         surname: surname,
         ipaddress: this.ip,
         email: email,
+        requesttype: 0,
         tstamp: new Date().toISOString(),
+        usertype: 0
       };
       // console.log('obj is', obj);
-      this.http.sendRequest(obj, 'download');
+      this.http.sendRequest(obj, 'download').then(
+        () => {
+
+        }
+      );
     }
   }
 }
