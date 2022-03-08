@@ -33,11 +33,14 @@ export class HttpService {
           // Debugger
           console.log(err);
           // Error PopUp
-          this._snack.showSnackBar(err.error, '');
+          this._snack.showSnackBar(err.message, '');
 
           // Rejection Baby
           reject(err);
         });
     });
   }
+
+
+
 }
