@@ -5,29 +5,29 @@
       <div class="row">
         <div class="col-md-5 offset-md-1">
           <div class="col-md-12 form-group">
-            <label for="exampleInputEmail1" class="bold">Name</label>
-            <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" #name>
+            <label for="InputEmail1" class="bold">Name</label>
+            <input type="name" class="form-control" id="InputEmail1" aria-describedby="emailHelp" #name>
           </div>
         </div>
         <div class="col-md-5 offset-md-1">
           <div class="col-md-12 form-group">
-            <label for="exampleInputEmail1" class="bold">Username</label>
-            <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" #username>
+            <label for="InputEmail1" class="bold">Username</label>
+            <input type="name" class="form-control" id="InputEmail1" aria-describedby="emailHelp" #username>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-5 offset-md-1">
           <div class="col-md-12 form-group">
-            <label for="exampleInputEmail1" class="bold">Surname</label>
-            <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" #surname>
+            <label for="InputEmail1" class="bold">Surname</label>
+            <input type="name" class="form-control" id="InputEmail1" aria-describedby="emailHelp" #surname>
           </div>
         </div>
         <div class="col-md-5 offset-md-1">
           <div class="col-md-12 form-group">
-            <label for="exampleFormControlSelect1" class="bold">User Type</label>
-            <select class="form-control" id="exampleFormControlSelect1" (change)="selectChangeHandler($event)">
-              <option></option>
+            <label for="FormControlSelect1" class="bold">User Type</label>
+            <select class="form-control" id="FormControlSelect1" (change)="selectUserType($event)">
+              <option>Select</option>
               <option value=0>School</option>
               <option value=1>Teacher</option>
               <option value=2>Student</option>
@@ -40,14 +40,15 @@
       <div class="row">
         <div class="col-md-5 offset-md-1">
           <div class="col-md-12 form-group">
-            <label for="exampleInputEmail1" class="bold">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" #email>
+            <label for="InputEmail1" class="bold">Email address</label>
+            <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" #email>
           </div>
         </div>
         <div class="col-md-5 offset-md-1">
           <div class="col-md-12 form-group">
-            <label for="exampleFormControlSelect1" class="bold">Request Type</label>
-            <select class="form-control" id="exampleFormControlSelect1" (change)="selectEventHandler($event)">
+            <label for="FormControlSelect1" class="bold">Request Type</label>
+            <select class="form-control" id="FormControlSelect1" (change)="selectRequestType($event)">
+              <option>Select</option>
               <option value=2>Support</option>
               <option value=3>Other</option>
             </select>
@@ -58,11 +59,11 @@
       <div class="row">
         <div class="col-md-11 offset-md-1">
           <div class="col-md-12 form-group">
-            <label for="exampleFormControlTextarea1" class="bold">Details</label>
-            <textarea style="height:179px !important;" class="form-control" id="exampleFormControlTextarea1"
+            <label for="FormControlTextarea1" class="bold">Details</label>
+            <textarea style="height:179px !important;" class="form-control" id="FormControlTextarea1"
               #details></textarea>
             <a class="btn btn-primary btn-large mt-3" style="float:right;"
-              (click)="sendContactData(username.value,name.value,details.value,surname.value)">Submit</a>
+              (click)="sendContactData(username.value,name.value,details.value,surname.value, email.value)">Submit</a>
           </div>
         </div>
       </div>
