@@ -24,24 +24,28 @@ export class BugReportComponent implements OnInit {
       this._snackBar.showSnackBar('Please enter your details', '');
     } else {
       let obj = {
-        usertype: parseInt(this.selectedValue),
+        actiontaken: '',
+        email: '',
         message: details,
-        name: 'John',
-        surname: 'Doe',
+        name: username,
+        organization: '',
+        password: '',
+        requestType: '0',
+        school: '',
+        status: 0,
+        surname: '',
+        tstamp: new Date().toISOString(),
+        usertype: parseInt(this.selectedValue),
         username: username,
-        password: 'xyzXYZ123321',
-        tstamp: '2021-12-31T10:11:12.313Z',
-        actiontaken: 'did something',
-        status: '0',
       };
       console.log('obj is', obj);
       this.http
-        .addReview(obj, 'bugreport')
+        .sendRequest(obj, 'bugreport')
         .then((data) => {
           this._snackBar.showSnackBar('Data Submitted Successfully', '');
         })
         .catch((err) => {
-          this._snackBar.showSnackBar('Error in Request', '');
+          this._snackBar.showSnackBar('Error in Request:' + err.message, '');
         });
     }
   }

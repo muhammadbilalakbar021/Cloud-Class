@@ -8448,11 +8448,18 @@ p
 textarea {
   height: 600px; }
 
-  @media only screen and (max-width: 475px) {
+  @media only screen and (max-width: 960px) and (min-width: 476px) {
     .img-responsives{
-      display: none;
+      width: 100%;
     }
-    }
+  }
+
+
+@media only screen and (max-width: 475px) {
+  .img-responsives{
+    display: none;
+  }
+}
 
 
 

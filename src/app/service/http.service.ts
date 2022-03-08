@@ -6,9 +6,9 @@ import SnackBar from '../utils/snakbar';
   providedIn: 'root',
 })
 export class HttpService {
-  constructor(protected _snack: SnackBar, private http: HttpClient) {}
+  constructor(protected _snack: SnackBar, private http: HttpClient) { }
 
-  addReview(object: any, route: string) {
+  sendRequest(object: any, route: string) {
     return new Promise<any>((resolve, reject) => {
       this.http
         .post(
@@ -23,8 +23,7 @@ export class HttpService {
           // Check Length of Data
           if (data == null) {
             // Error PopUp
-            console.log('Hello');
-            this._snack.showSnackBar('Soory, You dont have any Medicine', '');
+            this._snack.showSnackBar('Server gave an unexpected response.', '');
           }
           // Hurrah Baby
           resolve(data);
@@ -33,11 +32,36 @@ export class HttpService {
           // Debugger
           console.log(err);
           // Error PopUp
-          this._snack.showSnackBar(err.error, '');
+          this._snack.showSnackBar(err.message, '');
 
           // Rejection Baby
           reject(err);
         });
     });
   }
+
+  fetchIp() {
+    return new Promise<any>((resolve, reject) => {
+      this.http.get(
+        'http://www.geoplugin.net/json.gp',
+        {
+          responseType: 'json'
+        })
+        .toPromise()
+        .then((data: any) => {
+          if (data == null) {
+            resolve(null);
+          } else {
+            resolve(data.geoplugin_request);
+          }
+        })
+        .catch((err) => {
+          this._snack.showSnackBar(err.message, '');
+          reject(err);
+        })
+    });
+  }
+
+
+
 }

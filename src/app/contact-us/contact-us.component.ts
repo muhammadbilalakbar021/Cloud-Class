@@ -10,48 +10,64 @@ import SnackBar from '../utils/snakbar';
   styleUrls: ['./contact-us.component.css'],
 })
 export class ContactUsComponent implements OnInit {
-  selectedValue: string = '';
-  checkedValue: string = '';
+  userType: string = '';
+  requestType: string = '';
 
   constructor(
     private http: HttpService,
     public dialog: MatDialog,
     private _snackBar: SnackBar
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
-  selectChangeHandler(event: any) {
-    this.selectedValue = event.target.value;
+  ngOnInit(): void { }
+  selectUserType(event: any) {
+    if (event.target.value == 'Select') {
+      this.userType = "";
+    } else {
+      this.userType = event.target.value;
+    }
   }
 
-  selectEventHandler(event: any) {
-    this.checkedValue = event.target.value;
+  selectRequestType(event: any) {
+    if (event.target.value == 'Select') {
+      this.requestType = "";
+    } else {
+      this.requestType = event.target.value;
+    }
   }
 
-  sendContactData(username: any, name: any, surname: any, details: any) {
+  sendContactData(username: any, name: any, surname: any, details: any, email: any) {
     if (!name) {
       this._snackBar.showSnackBar('Please enter your username', '');
     } else if (!username) {
       this._snackBar.showSnackBar('Please enter your name', '');
     } else if (!surname) {
       this._snackBar.showSnackBar('Please enter your surname', '');
-    } else if (!details) {
-      this._snackBar.showSnackBar('Please enter your details', '');
+    } else if (!email
+      .toLowerCase()
+      .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+      this._snackBar.showSnackBar('Please enter your email', '');
+    } else if (!this.userType) {
+      this._snackBar.showSnackBar('Please select your user type', '');
+    } else if (!this.requestType) {
+      this._snackBar.showSnackBar('Please select your request type', '');
     } else {
       let obj = {
-        usertype: this.selectedValue,
+        usertype: this.userType,
+        requestType: this.requestType,
         message: details,
+        email: email,
         name: name,
         surname: surname,
         username: username,
-        password: 'xyzXYZ123321',
-        tstamp: '2021-12-31T10:11:12.313Z',
-        actiontaken: 'did something',
-        status: '0',
+        password: '',
+        tstamp: new Date().toISOString(),
+        actiontaken: '',
+        status: 0,
       };
       console.log('obj is', obj);
       this.http
-        .addReview(obj, 'contact')
+        .sendRequest(obj, 'contact')
         .then((data) => {
           this._snackBar.showSnackBar('Data Submitted Successfully', '');
         })

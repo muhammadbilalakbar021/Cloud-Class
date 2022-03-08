@@ -16,9 +16,9 @@ export class CreateAccountComponent implements OnInit {
     private http: HttpService,
     private _snackBar: SnackBar,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   sendData(name: any, surname: any, email: any, school: any, application: any) {
     this.openDialog(name, surname, email, school, application);
@@ -44,8 +44,12 @@ export class CreateAccountComponent implements OnInit {
         if (!name) {
           this._snackBar.showSnackBar('Please enter your name', '');
         } else if (!surname) {
-          this._snackBar.showSnackBar('Please enter your sirname', '');
-        } else if (!email || !email.includes('@')) {
+          this._snackBar.showSnackBar('Please enter your surname', '');
+        } else if (
+          !email
+            .toLowerCase()
+            .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+        ) {
           this._snackBar.showSnackBar('Please enter your email', '');
         } else if (!school) {
           this._snackBar.showSnackBar('Please enter your school', '');
@@ -53,21 +57,23 @@ export class CreateAccountComponent implements OnInit {
           this._snackBar.showSnackBar('Please enter your application', '');
         } else {
           let obj = {
+            actiontaken: "",
             email: email,
-            school: school,
-            usertype: 0,
             message: application,
             name: name,
-            surname: surname,
-            username: '',
+            organisation: "",
             password: '',
-            tstamp: '2021-12-31T10:11:12.313Z',
-            actiontaken: '',
-            status: '0',
+            requesttype: 0,
+            school: school,
+            status: 0,
+            surname: surname,
+            tstamp: new Date().toISOString(),
+            username: '',
+            usertype: 0,
           };
           console.log('obj is', obj);
           this.http
-            .addReview(obj, 'newaccount')
+            .sendRequest(obj, 'newaccount')
             .then((data) => {
               this._snackBar.showSnackBar('Data Submitted Successfully', '');
             })
