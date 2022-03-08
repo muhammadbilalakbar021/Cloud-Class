@@ -23,8 +23,7 @@ export class HttpService {
           // Check Length of Data
           if (data == null) {
             // Error PopUp
-            console.log('Hello');
-            this._snack.showSnackBar('Soory, You dont have any Medicine', '');
+            this._snack.showSnackBar('Server gave an unexpected response.', '');
           }
           // Hurrah Baby
           resolve(data);
