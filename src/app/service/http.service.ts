@@ -6,9 +6,9 @@ import SnackBar from '../utils/snakbar';
   providedIn: 'root',
 })
 export class HttpService {
-  constructor(protected _snack: SnackBar, private http: HttpClient) {}
+  constructor(protected _snack: SnackBar, private http: HttpClient) { }
 
-  addReview(object: any, route: string) {
+  sendRequest(object: any, route: string) {
     return new Promise<any>((resolve, reject) => {
       this.http
         .post(
@@ -38,6 +38,28 @@ export class HttpService {
           // Rejection Baby
           reject(err);
         });
+    });
+  }
+
+  fetchIp() {
+    return new Promise<any>((resolve, reject) => {
+      this.http.get(
+        'http://www.geoplugin.net/json.gp',
+        {
+          responseType: 'json'
+        })
+        .toPromise()
+        .then((data: any) => {
+          if (data == null) {
+            resolve(null);
+          } else {
+            resolve(data.geoplugin_request);
+          }
+        })
+        .catch((err) => {
+          this._snack.showSnackBar(err.message, '');
+          reject(err);
+        })
     });
   }
 

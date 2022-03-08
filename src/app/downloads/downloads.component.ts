@@ -9,9 +9,14 @@ import SnackBar from '../utils/snakbar';
 })
 export class DownloadsComponent implements OnInit {
   isHided: boolean = true;
+  ip: any;
   constructor(private http: HttpService, private _snackBar: SnackBar) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.http.fetchIp().then((ip) => {
+      this.ip = ip;
+    });
+  }
   changeState() {
     return (this.isHided = !this.isHided);
   }
@@ -19,19 +24,19 @@ export class DownloadsComponent implements OnInit {
     if (!name) {
       this._snackBar.showSnackBar('Please enter your name', '');
     } else if (!surname) {
-      this._snackBar.showSnackBar('Please enter your sirname', '');
+      this._snackBar.showSnackBar('Please enter your surname', '');
     } else if (!email) {
       this._snackBar.showSnackBar('Please enter your email', '');
     } else {
       let obj = {
         name: name,
         surname: surname,
-        ipaddress: '123.345.678.765',
+        ipaddress: this.ip,
         email: email,
-        tstamp: '2021-12-31T10:11:12.313Z',
+        tstamp: new Date().toISOString(),
       };
-      console.log('obj is', obj);
-      this.http.addReview(obj, 'download');
+      // console.log('obj is', obj);
+      this.http.sendRequest(obj, 'download');
     }
   }
 }

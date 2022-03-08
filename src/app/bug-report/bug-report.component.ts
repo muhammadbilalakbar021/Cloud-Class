@@ -30,13 +30,13 @@ export class BugReportComponent implements OnInit {
         surname: 'Doe',
         username: username,
         password: 'xyzXYZ123321',
-        tstamp: '2021-12-31T10:11:12.313Z',
+        tstamp: new Date().toISOString(),
         actiontaken: 'did something',
         status: '0',
       };
       console.log('obj is', obj);
       this.http
-        .addReview(obj, 'bugreport')
+        .sendRequest(obj, 'bugreport')
         .then((data) => {
           this._snackBar.showSnackBar('Data Submitted Successfully', '');
         })

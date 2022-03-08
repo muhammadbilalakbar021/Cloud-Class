@@ -44,7 +44,7 @@ export class CreateAccountComponent implements OnInit {
         if (!name) {
           this._snackBar.showSnackBar('Please enter your name', '');
         } else if (!surname) {
-          this._snackBar.showSnackBar('Please enter your sirname', '');
+          this._snackBar.showSnackBar('Please enter your surname', '');
         } else if (!email || !email.includes('@')) {
           this._snackBar.showSnackBar('Please enter your email', '');
         } else if (!school) {
@@ -61,13 +61,13 @@ export class CreateAccountComponent implements OnInit {
             surname: surname,
             username: '',
             password: '',
-            tstamp: '2021-12-31T10:11:12.313Z',
+            tstamp: new Date().toISOString(),
             actiontaken: '',
             status: '0',
           };
           console.log('obj is', obj);
           this.http
-            .addReview(obj, 'newaccount')
+            .sendRequest(obj, 'newaccount')
             .then((data) => {
               this._snackBar.showSnackBar('Data Submitted Successfully', '');
             })
