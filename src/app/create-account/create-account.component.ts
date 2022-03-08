@@ -16,9 +16,9 @@ export class CreateAccountComponent implements OnInit {
     private http: HttpService,
     private _snackBar: SnackBar,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   sendData(name: any, surname: any, email: any, school: any, application: any) {
     this.openDialog(name, surname, email, school, application);
@@ -45,7 +45,11 @@ export class CreateAccountComponent implements OnInit {
           this._snackBar.showSnackBar('Please enter your name', '');
         } else if (!surname) {
           this._snackBar.showSnackBar('Please enter your surname', '');
-        } else if (!email || !email.includes('@')) {
+        } else if (
+          !email
+            .toLowerCase()
+            .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+        ) {
           this._snackBar.showSnackBar('Please enter your email', '');
         } else if (!school) {
           this._snackBar.showSnackBar('Please enter your school', '');
@@ -57,9 +61,9 @@ export class CreateAccountComponent implements OnInit {
             email: email,
             message: application,
             name: name,
-            organisation:"",
+            organisation: "",
             password: '',
-            requesttype:	0,
+            requesttype: 0,
             school: school,
             status: 0,
             surname: surname,

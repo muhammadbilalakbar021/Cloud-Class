@@ -11,7 +11,7 @@ export class DownloadsComponent implements OnInit {
   isHided: boolean = true;
   selected: any = "";
   ip: any;
-  constructor(private http: HttpService, private _snackBar: SnackBar) {}
+  constructor(private http: HttpService, private _snackBar: SnackBar) { }
 
   ngOnInit(): void {
     this.http.fetchIp().then((ip) => {
@@ -26,13 +26,22 @@ export class DownloadsComponent implements OnInit {
       this.isHided = false;
     }
   }
-  
+
+  downloadFile(data: string) {
+    const url = `../../assets/${data}.zip`;
+    window.open(url);
+  }
+
   sendDownloadData(name: any, email: any, surname: any) {
     if (!name) {
       this._snackBar.showSnackBar('Please enter your name', '');
     } else if (!surname) {
       this._snackBar.showSnackBar('Please enter your surname', '');
-    } else if (!email) {
+    } else if (
+      !email
+        .toLowerCase()
+        .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+    ) {
       this._snackBar.showSnackBar('Please enter your email', '');
     } else {
       let obj = {
@@ -47,7 +56,7 @@ export class DownloadsComponent implements OnInit {
       // console.log('obj is', obj);
       this.http.sendRequest(obj, 'download').then(
         () => {
-
+          this.downloadFile(this.selected);
         }
       );
     }
