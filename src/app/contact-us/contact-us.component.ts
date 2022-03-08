@@ -44,7 +44,7 @@ export class ContactUsComponent implements OnInit {
         name: name,
         surname: surname,
         username: username,
-        password: 'xyzXYZ123321',
+        password: '',
         tstamp: new Date().toISOString(),
         actiontaken: 'did something',
         status: '0',

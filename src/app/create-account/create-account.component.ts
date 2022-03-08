@@ -53,17 +53,19 @@ export class CreateAccountComponent implements OnInit {
           this._snackBar.showSnackBar('Please enter your application', '');
         } else {
           let obj = {
+            actiontaken: "",
             email: email,
-            school: school,
-            usertype: 0,
             message: application,
             name: name,
-            surname: surname,
-            username: '',
+            organisation:"",
             password: '',
+            requesttype:	0,
+            school: school,
+            status: 0,
+            surname: surname,
             tstamp: new Date().toISOString(),
-            actiontaken: '',
-            status: '0',
+            username: '',
+            usertype: 0,
           };
           console.log('obj is', obj);
           this.http

@@ -24,15 +24,19 @@ export class BugReportComponent implements OnInit {
       this._snackBar.showSnackBar('Please enter your details', '');
     } else {
       let obj = {
-        usertype: parseInt(this.selectedValue),
+        actiontaken: '',
+        email: '',
         message: details,
-        name: 'John',
-        surname: 'Doe',
-        username: username,
-        password: 'xyzXYZ123321',
+        name: username,
+        organization: '',
+        password: '',
+        requestType: '0',
+        school: '',
+        status: 0,
+        surname: '',
         tstamp: new Date().toISOString(),
-        actiontaken: 'did something',
-        status: '0',
+        usertype: parseInt(this.selectedValue),
+        username: username,
       };
       console.log('obj is', obj);
       this.http
@@ -41,7 +45,7 @@ export class BugReportComponent implements OnInit {
           this._snackBar.showSnackBar('Data Submitted Successfully', '');
         })
         .catch((err) => {
-          this._snackBar.showSnackBar('Error in Request', '');
+          this._snackBar.showSnackBar('Error in Request:' + err.message, '');
         });
     }
   }
